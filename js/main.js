@@ -1,11 +1,6 @@
 requirejs.config({
-    //By default load any module IDs from js/lib
+    //By default load any module IDs from /js/
     baseUrl: 'js',
-    //except, if the module ID starts with "app",
-    //load it from the js/app directory. paths
-    //config is relative to the baseUrl, and
-    //never includes a ".js" extension since
-    //the paths config could be for a directory.
     paths: {
         jquery: 'jquery-1.10.2.min',
         underscore: 'underscore-min',
@@ -29,13 +24,7 @@ requirejs.config({
 });
 
 
-require([
-    "jquery",
-    "underscore",
-    "backbone",
-    "app"
-    ], 
-  function($,_,Backbone,app) {
+require(["app"], function(app) {
     app.initialize();
 });
 
