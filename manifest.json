@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+
+  "name": "Gallery",
+  "description": "test version",
+  "version": "0.1",
+
+  "background": {
+    "scripts": ["js/background.js"]
+  },
+
+  "browser_action": {
+    //"default_popup": "popup.html",
+    "default_icon": "icon.png"
+  },
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+
+  "permissions": [
+    "<all_urls>",
+    "file:///*",
+    "downloads",
+    "tabs"
+  ]
+}

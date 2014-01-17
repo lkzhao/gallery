@@ -1,0 +1,11 @@
+<a title="<%=tags%>" page="<%=page%>" href="<%=tags%>">
+  <img src="<%=thumbnailImageURL%>" class="<%=sizeclass%>" alt="<%=width%> x <%=height%>">
+  <span><%=width%> x <%=height%></span>
+</a>
+<%if(downloading){%>
+  <div class="progressbar"><div style='width:<%=downloadProgress%>%'></div></div>
+<%}%>
+<%if(!downloading&&downloadProgress>=100){%>
+  <i class="fa fa-check-circle downloadedSign"></i>
+<%}%>
+

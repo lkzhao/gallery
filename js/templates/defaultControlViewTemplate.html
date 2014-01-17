@@ -1,0 +1,12 @@
+<form id="tagsForm">
+    <input class="navbar-btn" placeholder="search tags" id="tagsInput" type="text" name="fname" autocomplete="off">
+    <input type="submit" style='height:0;width:0;position:absolute;top:-50px;left:-50px;' value="">
+</form>
+<select class="navbar-btn" id="sizeSelect" value="<%=currentSizeIndex%>">
+    <%_.each(sizes, function(size,i){%>
+        <option value=<%=i%>>Size: <%=size.name%></option>
+    <%})%>
+</select>
+<div class='right'>
+<button class="navbar-btn" id="viewSwitch" >Manage</button>
+</div>

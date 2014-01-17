@@ -1,0 +1,8 @@
+<img src="<%=(!downloading&&downloadProgress>=100)?savedImageURL:thumbnailImageURL%>" class="<%=sizeclass%>" alt="<%=width%> x <%=height%>">
+<span><%=width%> x <%=height%></span>
+<%if(downloading){%>
+  <div class="progressbar"><div style='width:<%=downloadProgress%>%'></div></div>
+<%}%>
+<%if(!downloading&&downloadProgress>=100){%>
+    <i class="fa fa-check-circle downloadedSign"></i>
+<%}%>
