@@ -25,7 +25,7 @@ define([
           '*path':  'showDefault'
         },
         showDefault:function(){
-          console.log("default")
+          console.log("route to default")
           if(that.currentView)that.currentView.remove()
           var defaultView = new DefaultView({
             gallery:that.defaultGallery,
@@ -37,7 +37,7 @@ define([
         },
         showManage:function(id){
           if(!id)id=0
-          console.log("manage")
+          console.log("route to manage")
           if(that.currentView)that.currentView.remove()
           var manageView = new ManageView({
             gallery:that.manageGallery,
