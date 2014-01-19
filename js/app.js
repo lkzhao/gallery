@@ -2,7 +2,7 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'collections/gallery',
+  'collections/Gallery',
   'views/DefaultView',
   'views/ManageView'
 ], function($, _, Backbone , Gallery, DefaultView, ManageView){

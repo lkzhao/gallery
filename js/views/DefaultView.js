@@ -37,7 +37,7 @@ define([
             {name:"1920x1080+",addition:"width:>1920 height:>1200"},
             {name:"2560x1440+",addition:"width:>2560 height:>1600"}
           ],
-          url:{domain:"http://biliwallpaper.com/get-image.php",post:"/post"}
+          url:{domain:"/get-image.php",post:"/post"}
         })
       });
     },

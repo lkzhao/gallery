@@ -3,7 +3,7 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'Filesystem',
+  'FileSystem',
   // Using the Require.js text! plugin, we are loaded raw text
   // which will be used as our views primary template
   'text!templates/imageViewTemplate.html'
@@ -26,17 +26,13 @@ define([
       if(this.model.get("downloading")==false&&this.model.get("downloadProgress")==100)return
       this.model.set("downloading",true)
       var m=this.model.attributes
-      FileSystem.downloadFile(m.fullsizeImageURL, this.model, function(blob) {
-        FileSystem.saveFile(blob, m.filename ,function(){
-          FileSystem.readDataURL(m.filename ,function(dataUrl){
-            that.model.set({
-              downloading:false,
-              downloadProgress:100,
-              savedImageURL:dataUrl
-            })
-            require("app").manageGallery.add(that.model)
-          });
-        });
+      FileSystem.downloadFile(m.fullsizeImageURL, this.model, function(imgURL) {
+        that.model.set({
+          downloading:false,
+          downloadProgress:100,
+          savedImageURL:imgURL
+        })
+        require("app").manageGallery.add(that.model)
       });
     },
 

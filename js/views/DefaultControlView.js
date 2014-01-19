@@ -96,50 +96,20 @@ define([
       $.each(data,function(i,imageData){
         console.log(imageData)
         var filename=decodeURIComponent(imageData.url.substr(imageData.url.lastIndexOf("/") + 1))
-        FileSystem.exists(filename,function(dataURL){
-          // var currrentImage=new Image({
-          //   "width":  imageData.width,
-          //   "height":   imageData.height,
-          //   "page":   that.getURL()+'/show/'+imageData.id,
-          //   "thumbnailImageURL":  imageData.preview_url,
-          //   "fullsizeImageURL":  imageData.file_url,
-          //   "savedImageURL":  (dataURL)?dataURL:"",
-          //   "filename":filename,
-          //   "tags": imageData.tags,
-          //   "sizeclass": "wide",
-          //   "downloading":  false,
-          //   "downloadProgress":(dataURL)?100:0
-          // })
-          var currrentImage=new Image({
-            "width":  imageData.width,
-            "height":   imageData.height,
-            "page":   that.getURL()+'/show/'+imageData.id,
-            "thumbnailImageURL":  imageData.thumbnailUrl,
-            "fullsizeImageURL":  imageData.url,
-            "savedImageURL":  (dataURL)?dataURL:"",
-            "filename":filename,
-            "sizeclass": "wide",
-            "downloading":  false,
-            "downloadProgress":(dataURL)?100:0
-          })
-          if(dataURL){
-            require("app").manageGallery.add(currrentImage)
-          }
-
-          // $.ajax({
-          //    url: "www.biliwallpaper.com/upload-image.php",
-          //    type: "POST",
-          //    data: {source: dataURL},
-          //    success: function(response) {
-          //        console.log(response)
-          //    },
-          //    error: function(jqXHR, textStatus, errorMessage) {
-          //        console.log(errorMessage); // Optional
-          //    }
-          // });
-
-          that.gallery.add(currrentImage)
+        var currrentImage=new Image({
+          "width":  imageData.width,
+          "height":   imageData.height,
+          "page":   that.getURL()+'/show/'+imageData.id,
+          "thumbnailImageURL":  imageData.thumbnailUrl,
+          "fullsizeImageURL":  imageData.url,
+          "savedImageURL":  "",
+          "filename":filename,
+          "tags": imageData.tags,
+          "sizeclass": "wide",
+          "downloading":  false,
+          "downloadProgress":0
         })
+        that.gallery.add(currrentImage)
       })
       this.loading=false;
       if(!this.removed) this.checkLocation();

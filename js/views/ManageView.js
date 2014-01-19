@@ -4,7 +4,7 @@ define([
   'underscore',
   'backbone',
   'models/Image',
-  'Filesystem',
+  'FileSystem',
   'views/LargeImageView',
   'views/ManageGalleryView',
   'text!templates/manageViewTemplate.html',
