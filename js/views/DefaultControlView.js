@@ -49,7 +49,7 @@ define([
         // this.constructor.__super__.remove.call(this);
     }, 
     getURL:function(){
-      return this.a.url.domain+this.a.url.post;
+      return this.a.url.domain
     },
 
     getSize:function(){
@@ -73,14 +73,14 @@ define([
 
       console.log("Loading:"+this.getURL()+" page "+this.a.pageNum +" with tags "+this.a.tags+" landscape "+this.getSize())
       $.ajax({
-        url:this.getURL()+".json",
+        url:this.getURL(),
         dataType: 'json',
-        data:{limit:this.a.rateNum,page:this.a.pageNum,tags:this.a.tags+" landscape "+this.getSize()},
+        data:{rate:this.a.rateNum,page:this.a.pageNum,tags:this.a.tags+" landscape "+this.getSize()},
         success:function(data){
           that.displayImages(data);
         },
-        error:function() { 
-          alert("Request Error")
+        error:function(e) { 
+          console.log(e.responseText)
         }
       })
     },
@@ -94,17 +94,30 @@ define([
         return;
       }
       $.each(data,function(i,imageData){
-        var filename=decodeURIComponent(imageData.file_url.substr(imageData.file_url.lastIndexOf("/") + 1))
+        console.log(imageData)
+        var filename=decodeURIComponent(imageData.url.substr(imageData.url.lastIndexOf("/") + 1))
         FileSystem.exists(filename,function(dataURL){
+          // var currrentImage=new Image({
+          //   "width":  imageData.width,
+          //   "height":   imageData.height,
+          //   "page":   that.getURL()+'/show/'+imageData.id,
+          //   "thumbnailImageURL":  imageData.preview_url,
+          //   "fullsizeImageURL":  imageData.file_url,
+          //   "savedImageURL":  (dataURL)?dataURL:"",
+          //   "filename":filename,
+          //   "tags": imageData.tags,
+          //   "sizeclass": "wide",
+          //   "downloading":  false,
+          //   "downloadProgress":(dataURL)?100:0
+          // })
           var currrentImage=new Image({
             "width":  imageData.width,
             "height":   imageData.height,
             "page":   that.getURL()+'/show/'+imageData.id,
-            "thumbnailImageURL":  imageData.preview_url,
-            "fullsizeImageURL":  imageData.file_url,
+            "thumbnailImageURL":  imageData.thumbnailUrl,
+            "fullsizeImageURL":  imageData.url,
             "savedImageURL":  (dataURL)?dataURL:"",
             "filename":filename,
-            "tags": imageData.tags,
             "sizeclass": "wide",
             "downloading":  false,
             "downloadProgress":(dataURL)?100:0
@@ -112,6 +125,19 @@ define([
           if(dataURL){
             require("app").manageGallery.add(currrentImage)
           }
+
+          // $.ajax({
+          //    url: "www.biliwallpaper.com/upload-image.php",
+          //    type: "POST",
+          //    data: {source: dataURL},
+          //    success: function(response) {
+          //        console.log(response)
+          //    },
+          //    error: function(jqXHR, textStatus, errorMessage) {
+          //        console.log(errorMessage); // Optional
+          //    }
+          // });
+
           that.gallery.add(currrentImage)
         })
       })

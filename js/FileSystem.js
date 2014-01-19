@@ -49,12 +49,14 @@ define(['jquery','underscore','backbone','FileSaver'],function($,_, Backbone,Fil
       })
     },
     exists:function (fileName, callback) {
-        var that= this;
-        fileSystem.root.getFile(fileName, {create : false}, function() {
-            that.readDataURL(fileName,callback)
-        }, function() {
+        // var that= this;
+        // fileSystem.root.getFile(fileName, {create : false}, function() {
+        //     that.readDataURL(fileName,callback)
+        // }, function() {
+        //     callback();
+        // });
+        
             callback();
-        });
     },
     delete:function(path, success){
       fileSystem.root.getFile(path, {}, function(fileEntry) {
@@ -78,14 +80,14 @@ define(['jquery','underscore','backbone','FileSaver'],function($,_, Backbone,Fil
         xhr.send(null);
     },
     saveFile:function (data, path, success) {
-        if (!fileSystem) return;
+        if (!fileSystem){return;}
 
-        fileSystem.root.getFile(path, {create: true}, function(fileEntry) {
+          fileSystem.root.getFile(path, {create: true}, function(fileEntry) {
             fileEntry.createWriter(function(writer) {
               if (success) writer.onwriteend = success;
               writer.write(data);
             }, errorHandler);
-        }, errorHandler);
+          }, errorHandler);
     },
     readDataURL:function (path, success) {
         fileSystem.root.getFile(path, {}, function(fileEntry) {

@@ -66,7 +66,6 @@ define([
       this.render()
     },
     
-
     render : function() {
       var that=this;
       // We keep track of the rendered state of the view

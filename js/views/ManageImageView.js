@@ -35,7 +35,7 @@ define([
 
     switchImage:function(e){
       e.preventDefault()
-      require("app").router.navigate("manage/"+this.gallery.indexOf(this.model),false)
+      //require("app").router.navigate("manage/"+this.gallery.indexOf(this.model),false)
       this.largeImage.set("image",this.model)
     },
 
